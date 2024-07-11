@@ -3,6 +3,7 @@
 #nullable disable
 
 using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -56,9 +57,17 @@ namespace Ecommerce.Areas.Identity.Pages.Account.Manage
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+            [DisplayName("FirstName")]
+            public string FirstName { get; set; }
+            [DisplayName("Email")]
+            public string Email { get; set; }
+            [DisplayName("LastName")]
+            public string LastName { get; set; }
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+            [DisplayName("Profile Picture")]
+            public byte[] ProfilePicuture { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -70,7 +79,11 @@ namespace Ecommerce.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                PhoneNumber = phoneNumber,
+                Email = user.Email,
+                  ProfilePicuture = user.ProfilePicture
             };
         }
 
@@ -101,6 +114,24 @@ namespace Ecommerce.Areas.Identity.Pages.Account.Manage
             }
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var FirstName = user.FirstName;
+            var LastName = user.LastName;
+            var Email = user.Email;
+            if (Input.FirstName != FirstName)
+            {
+                user.FirstName = Input.FirstName;
+                await _userManager.UpdateAsync(user);
+            }
+            if (Input.LastName != LastName)
+            {
+                user.LastName = Input.LastName;
+                await _userManager.UpdateAsync(user);
+            }
+            if (Input.Email != Email)
+            {
+                user.Email = Input.Email;
+                await _userManager.UpdateAsync(user);
+            }
             if (Input.PhoneNumber != phoneNumber)
             {
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
@@ -109,6 +140,17 @@ namespace Ecommerce.Areas.Identity.Pages.Account.Manage
                     StatusMessage = "Unexpected error when trying to set phone number.";
                     return RedirectToPage();
                 }
+            }
+            if (Request.Form.Files.Count > 0)
+            {
+                var file = Request.Form.Files.FirstOrDefault();
+
+                using (var datastream = new MemoryStream())
+                {
+                    await file.CopyToAsync(datastream);
+                    user.ProfilePicture = datastream.ToArray();
+                }
+                await _userManager.UpdateAsync(user);
             }
 
             await _signInManager.RefreshSignInAsync(user);

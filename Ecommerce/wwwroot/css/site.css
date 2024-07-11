@@ -20,3 +20,13 @@ html {
 body {
   margin-bottom: 60px;
 }
+.profile-picture{
+    width:295px;
+    height:295px;
+    object-fit:cover
+}
+.avatar {
+    width: 45px;
+    height: 45px;
+    object-fit: 45px;
+}
