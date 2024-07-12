@@ -1,7 +1,9 @@
 using Ecommerce.Data;
 using Ecommerce.Models;
+using Ecommerce.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using UserIdentity.Services;
 
 namespace Ecommerce
 {
@@ -16,11 +18,18 @@ namespace Ecommerce
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-            //Options => Options.SignIn.RequireConfirmedAccount = true
-            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+            //
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(/*Options => Options.SignIn.RequireConfirmedAccount = true*/)
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI().AddDefaultTokenProviders();
             builder.Services.AddControllersWithViews();
+
+
+               // forgetPassword
+            builder.Services.AddTransient<IMailer, MailKitMailer>(provider =>
+    new MailKitMailer("smtp.gmail.com", 587, "ahmed metwally", "AhmedMetwally@#12"));
+
+
 
             var app = builder.Build();
 
