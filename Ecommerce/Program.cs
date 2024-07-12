@@ -26,8 +26,8 @@ namespace Ecommerce
 
 
                // forgetPassword
-            builder.Services.AddTransient<IMailer, MailKitMailer>(provider =>
-    new MailKitMailer("smtp.gmail.com", 587, "ahmed metwally", "AhmedMetwally@#12"));
+    //        builder.Services.AddTransient<IMailer, MailKitMailer>(provider =>
+    //new MailKitMailer("smtp.gmail.com", 587, "ahmed metwally", "AhmedMetwally@#12"));
 
 
 
