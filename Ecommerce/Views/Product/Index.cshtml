@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Product>
+
+
+@* <a class="btn btn-primary" href="#" role="button" style="width:200px;border-radius:20px">Create New</a>
+ *@<div style="display:flex"> 
+@foreach(var item in Model)
+{
+    <div class="card" style="width: 18rem;padding:3px;display:flex;">
+        <img class="card-img-top" src="~/images/@item.Photo" alt="Card image cap">
+        <div class="card-body">
+            <a href="/Product/GetOne/@item.Id" class="card-title">@item.Name</a>
+            <br />
+           @*   <a class="card-text">@item.Description</a> *@
+            <br />
+                <h4 href="#">$ @item.Price  </h4>
+        </div>
+    </div>
+}
+</div>

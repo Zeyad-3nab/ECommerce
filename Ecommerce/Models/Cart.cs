@@ -1,4 +1,6 @@
-﻿namespace FinalProject.Models
+﻿using Ecommerce.Models;
+
+namespace FinalProject.Models
 {
     public class Cart
     {
