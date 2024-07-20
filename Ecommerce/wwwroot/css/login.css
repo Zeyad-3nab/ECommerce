@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: #ececec;
+}
+.login {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-form {
+    width: 40%;
+    min-height: 600px;
+    background: #fff;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 2rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .4);
+    border-radius: .3rem;
+}
+.login-form h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+}
+/* .form-pic {
+    flex: 1 1 50%;
+}
+form {
+    flex: 1 1 50%;
+} */
+
+.fa-spinner {
+    animation: span 3s alternate infinite;
+}
+@keyframes span {
+    0%{
+        transform: rotate(0);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+@media (max-width:768px) {
+    .form-pic, form {
+        flex-basis: 100%;
+    }
+    .login-form {
+        width: 90%;
+
+    }
+    .form-pic {
+        order: -1;
+    }
+}
+
+ img {
+    width: 350px;
+
+ }
+.form-group {
+    margin-bottom: 1rem;
+}
+.login .errorMessage{
+    text-align: center;
+    width: fit-content;
+    font-weight: 700;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .4);
+    padding: .5rem;
+    border-radius: .4rem;
+    margin-top: 1rem;
+    display: none;
+}
+.form-group input {
+    width: 100%;
+    border: .1rem solid #ececec;
+    background-color: transparent;
+    height: 2.5rem;
+    letter-spacing: 1px;
+    padding-inline:.6rem ;
+    margin-top: .5rem;
+    border-radius: .3rem;
+}
+
+.form-group input:focus {
+    outline: 0;
+}
+.btns {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.btns a {
+    color: #000;
+}
+
+/*._btn {
+    width: 6rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .3rem;
+    border: 0;
+    cursor: pointer;
+}*/
+
+._btn:hover {
+background:#808080;
+transition:2s;
+}
+button {
+    width: 6rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .3rem;
+    border: 0;
+    cursor: pointer;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+.user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    
+}
+.user-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: .1rem solid rgba(0, 0, 0, .4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+cursor: pointer;
+}
+.form-pic img{
+    width: 200px;
+}

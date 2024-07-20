@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+ @inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -7,39 +11,113 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Ecommerce.styles.css" asp-append-version="true" />
-</head>
+    <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+</head> 
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Ecommerce</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        <nav class="slider d-flex justify-content-center align-items-center my-2 w-100 position-relative">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="logo">
+                    <img class="w-50" src="~/Images/logo.png" alt="">
+                </div>
+                <div class="nav_content position-relative">
+                    <ul class="nav_items">
+                        <li class="position-relative">   <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Ecommerce</a></li>
+                        <li class="position-relative"> <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li class="position-relative"> <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                    </ul>
+                </div>
+                <div class="nav_icons d-flex">
+                    <ul class="menu_icon d-flex">
+                        <li class="mx-3">
+                            <a class="cart_icon d-flex justify-content-center align-items-center" href="cart.html">
+                                <i class="fas fa-shopping-basket" aria-hidden="true"></i>
+                                <span>0</span>
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li>
+                            <a class="wishList_icon d-flex justify-content-center align-items-center" href="wishList.html">
+                                <i class="fa-regular fa-heart py-2 px-2"></i>
+                                <span>0</span>
+                            </a>
                         </li>
                     </ul>
-                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav">
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            @if (UserManager.GetUserAsync(User).Result.ProfilePicture != null)
+                            {
+
+                                <div class="menu_icon" style="display:flex;justify-content:center;align-items:center; padding-left:1.5rem; gap:.5rem;">
+                                    <li class="user  d-flex justify-content-center align-items-center gap-3">
+
+                                        <a class="wishList_icon d-flex justify-content-center align-items-center form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" style=""> <i class="fa-solid fa-right-to-bracket"></i></a>
+
+                                    </li>
+                                    <li class="nav-item">
+                                    <a style="background:white" asp-area="Identity" asp-page="/Account/Manage/Index"> <img class="avatar rounded-circle" alt="profile" src="data:image/*;base64,@(Convert.ToBase64String(UserManager.GetUserAsync(User).Result.ProfilePicture))" /></a>
+                                     
+                                    </li>
+                                </div>
+                            }
+                            else
+                            {
+                              <div class="menu_icon" style="display:flex;justify-content:center;align-items:center; padding-left:1.5rem; gap:.5rem;">
+                                  <li class="user  d-flex justify-content-center align-items-center gap-3">
+                              
+                                      <a class="wishList_icon d-flex justify-content-center align-items-center form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" style=""> <i class="fa-solid fa-right-to-bracket"></i></a>
+                              
+                                  </li>
+                                  <li class="user  d-flex justify-content-center align-items-center gap-3">
+                                      <a class="user_icon d-flex justify-content-center align-items-center" asp-area="Identity" asp-page="/Account/Manage/Index"><i class="fas fa-user" aria-hidden="true"></i></a>
+                                      <p style="padding-top:.3rem;">@User.Identity?.Name</p>
+                                  </li>
+                              
+                              </div>
+                                
+                            }
+                        }
+                        else
+                        {
+                           <div class="d-flex mx-2" style="gap:1rem;">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                            </li>
+                           </div>
+                        }
+                    </ul>
                 </div>
+                <i class="fa-solid fa-bars d-none "></i>
+                <div class="drop_down">
+                    <ul class="nav_items_drop_down position-absolute d-block">
+                        <li class="position-relative">   <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Ecommerce</a></li>
+                        <li class="position-relative"> <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li class="position-relative"> <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                    </ul>
+                </div>
+
             </div>
         </nav>
+
+
+
+
+
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class=" content w-100">
+        <main role="main">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - Ecommerce - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+    <footer class=" footer text-light" style="background-color:#212529;">
+        <div class="container d-flex justify-content-center align-items-center" >
+            Welcome To Our Page
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -48,3 +126,5 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+

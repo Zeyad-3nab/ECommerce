@@ -1,4 +1,4 @@
-﻿@page
+﻿@* @page
 @model ResendEmailConfirmationModel
 @{
     ViewData["Title"] = "Resend email confirmation";
@@ -24,3 +24,53 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+ *@
+
+
+ @page
+@model ResendEmailConfirmationModel
+
+
+@{
+    ViewData["Title"] = "Resend email confirmation";
+    Layout = "/Views/Shared/_LoginLayout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/css/login.css">
+</head>
+
+<body>
+
+    <section class="login">
+        <div class="login-form">
+            <h1>@ViewData["Title"]</h1>
+            <img src="~/loginImg/th6.jpg" alt="Alternate Text" />
+            <form method="post">
+                <div asp-validation-summary="All" class="text-danger" role="alert"></div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Email" class="form-control" aria-required="true" placeholder="name@example.com" />
+                    <label asp-for="Input.Email" class="form-label"></label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <button type="submit" class="w-100 _btn">Resend</button>
+            </form>
+
+        </div>
+    </section>
+
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+</body>
+</html>
+

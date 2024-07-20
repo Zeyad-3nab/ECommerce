@@ -1,4 +1,4 @@
-﻿@{
+﻿@* @{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,3 +6,46 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+ *@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="~/css/index.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body>
+    @{
+        ViewData["Title"] = "Home Page";
+    }
+
+    <div class="loading-page">
+        <img src="~/images/logo.png" alt="">
+        <div class="progress"></div>
+        <div class="spinner"></div>
+    </div>
+    <div class="text-center w-100">
+        <h1 class="display-4">Welcome To Our Hospital</h1>
+        <p class="py-1">
+        <p class="py-1">Thank you for choosing our hospital for your healthcare needs.</p>
+        <p class="py-1">Here, we strive to provide the highest quality medical care to our patients.</p>
+        <p class="py-1">Learn more about our services and specialties:</p>
+        </p>
+        <div class="container">
+            <div class="row row-cols-1">
+                <div class="col py-2 border border-1">Internal Medicine</div>
+                <div class="col py-2 border border-1">Pediatrics</div>
+                <div class="col py-2 border border-1">Surgery</div>
+            </div>
+        </div>
+        <p>If you have any questions or need assistance, please don't hesitate to contact us.</p>
+    </div>
+
+    <script src="~/js/index.js"></script>
+</body>
+</html>
+
+
+
