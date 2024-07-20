@@ -13,10 +13,10 @@ namespace Ecommerce.Controllers
         }
         public IActionResult Index()
         {
-            var result=product.GetProducts();
+            var result=product.GetAll();
             return View(result);
         }
-        public IActionResult GetOne(int id)
+        public IActionResult Details(int id)
         {
            var result= product.GetProductById(id);
             ViewData["GoinWithBrand"] = product.GetProductWithBrand();

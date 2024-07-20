@@ -15,12 +15,26 @@ namespace Ecommerce.Repository
             this.context = context;
         }
 
+        public void Add(Product temp)
+        {
+            context.Products.Add(temp);
+            context.SaveChanges();
+        }
+
+        public void Delete(int id)
+        {
+            var result = context.Products.Find(id);
+            context.Products.Remove(result);
+            context.SaveChanges();
+        }
+
+
         public Product GetProductById(int id)
         {
            return context.Products.Find(id); 
         }
 
-        public List<Product> GetProducts()
+        public List<Product> GetAll()
         {
             return context.Products.ToList();
         }
@@ -29,6 +43,11 @@ namespace Ecommerce.Repository
             var result=context.Products.Include(e=>e.Brand).ToList();
             return result;
         }
-       
+
+        public void Update(Product temp)
+        {
+            context.Products.Update(temp);
+            context.SaveChanges();
+        }
     }
 }

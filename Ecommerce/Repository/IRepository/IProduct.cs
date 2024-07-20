@@ -2,9 +2,8 @@
 
 namespace Ecommerce.Repository.IRepository
 {
-    public interface IProduct
+    public interface IProduct:IRepository<Product>
     {
-        List<Product> GetProducts();
         Product GetProductById(int id);
         List<Product> GetProductWithBrand();
         //void Create(Product product);
