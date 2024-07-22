@@ -114,3 +114,42 @@
     color: #ff7c08;
     transition:.5s;
 }
+
+.button_create {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #231f40c4;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    min-width: 120px;
+    padding: 0 10px;
+    transition: all 0.5s;
+}
+
+    .button_create span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+
+        .button_create span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+    .button_create:hover span {
+        padding-right: 25px;
+        color: #FFFFFF;
+    }
+
+        .button_create:hover span:after {
+            opacity: 1;
+            right: 0;
+        }

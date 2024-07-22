@@ -26,7 +26,11 @@ namespace Ecommerce
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI().AddDefaultTokenProviders();
             builder.Services.AddControllersWithViews();
+
+
+
             builder.Services.AddScoped<IProduct,ProductRepository>();
+            builder.Services.AddScoped<IBrand,BrandRepository>();
             //builder.Services.AddTransient<IMailer, EmailSender>();
 
 

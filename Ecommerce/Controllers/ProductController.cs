@@ -8,10 +8,12 @@ namespace Ecommerce.Controllers
     public class ProductController : Controller
     {
         private readonly IProduct product;
+        private readonly IBrand brand;
 
-        public ProductController(IProduct product)
+        public ProductController(IProduct product,IBrand brand)
         {
             this.product = product;
+            this.brand = brand;
         }
         public IActionResult Index()
         {
@@ -28,6 +30,7 @@ namespace Ecommerce.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewData["Brands"]=brand.GetAll();
             return View();
         }
 
@@ -58,6 +61,7 @@ namespace Ecommerce.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
+            ViewData["Brands"] = brand.GetAll();
             var result = product.GetProductById(id);
             ProductVM productVM =new ProductVM() 
             {
