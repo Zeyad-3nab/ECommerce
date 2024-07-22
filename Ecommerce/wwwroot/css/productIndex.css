@@ -1,0 +1,116 @@
+﻿.section_footer {
+    background: #231f40c4;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 0;
+    margin-top:73px;
+}
+
+    .section_footer .container {
+        gap: 15rem;
+    }
+
+    .section_footer .image {
+        height: 100% !important;
+    }
+
+    .section_footer .container .footer_img img {
+        border-radius: 50%;
+        position: relative;
+    }
+
+    .section_footer .footer_text h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        text-transform: capitalize;
+        color: var(--bs-white);
+    }
+
+    .section_footer .footer_text p {
+        font-size: 1rem;
+        margin: 15px 0px 28px 0px;
+        color: var(--bs-white);
+    }
+
+    .section_footer .footer_text h3 {
+        color: var(--colorPrimary) !important;
+        text-transform: capitalize;
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-top: 10px;
+        font-family: var(--cursiveFont);
+    }
+
+.footer_text form {
+    background: var(--bs-white);
+    padding: 10px;
+    border-radius: 80px;
+    position: relative;
+}
+
+.footer_text input {
+    border-radius: 30px;
+    border: .1rem solid var(--paraColor);
+    border-color: #ddd;
+    padding: 17px 25px;
+    width: 100%;
+}
+
+.footer_text button:hover {
+    background-color: #000;
+    transition: .7s;
+}
+
+.footer_text button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: var(--colorPrimary);
+    text-transform: capitalize;
+    color: var(--colorWhite);
+    padding: 12px 40px 12px 40px;
+    border-radius: 30px;
+    font-weight: 600;
+    border: .1rem solid var(--bs-white);
+}
+
+.section_footer .image {
+    width: 100%;
+    z-index: -3;
+    height: inherit;
+}
+
+
+.products {
+    background-color: #EEF6EB;
+}
+.text {
+    padding-bottom: 1rem;
+}
+
+.card .image {
+    width:100%;
+    height:15rem;
+    overflow:hidden;
+}
+.card .image img {
+    width:100%;
+    height:100%;
+}
+    .card .image img:hover {
+        transform:scale(1.2,1.2);
+        transition:1s;
+    }
+
+.card:hover  {
+   bottom:2rem;
+   transition:3s !important;
+}
+.card-body a:hover {
+    color: #ff7c08;
+    transition:.5s;
+}

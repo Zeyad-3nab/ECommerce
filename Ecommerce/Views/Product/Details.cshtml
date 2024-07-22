@@ -1,18 +1,42 @@
 ﻿@model Product
 
 
-<div style="display:flex;margin:40px">
-    <div>
-        <img src="~/images/@Model.Photo" alt="Alternate Text" style="width:450px;object-fit:cover;border-radius:10px;margin-right:40px;margin-left:40px" />
-    </div>
-    <div class="Text">
-        <h4>@Model.Name</h4>
-        <h4>@Model.Description</h4>
-        <h5 style="color:cadetblue">Brand: @Model.Brand.Name</h5>
-        <hr />
-        <h4>$ @Model.Price</h4>
-        <br />
-        <a class="btn btn-warning" href="#" role="button" style="width:200px;border-radius:20px">Add To Cart</a>
-    </div>
-</div>
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/styles/all.min.css">
+    <link rel="stylesheet" href="./assets/styles/bootstrap.min.css">
+    <link href="~/css/productDetails.css" rel="stylesheet" />
+</head>
+<body>
+
+
+
+    <section class="Details" style=" padding-top:73px;">
+        <div class="container d-flex justify-content-center align-items-center gap-3">
+            <div class="image">
+                <img src="~/images/@Model.Photo" alt="Alternate Text" />
+            </div>
+            <div class="content">
+                <h2 class="d-block">@Model.Name</h2>
+                <p>@Model.Description</p>
+                <h5 style="color:cadetblue">Brand: @Model.Brand.Name</h5>
+                <hr />
+                <div class="d-flex align-items-center gap-1">
+                    <h4>$ @Model.Price</h4>
+                    <del>$@(Model.Price*1.5)</del>
+                </div>
+                <br />
+                <a class="btn btn-warning" href="#" role="button" style="width:200px;border-radius:20px">Add To Cart</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="./assets/scripts/bootstrap.bundle.js"></script>
+</body>
+</html>

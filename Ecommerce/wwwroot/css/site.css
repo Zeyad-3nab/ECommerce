@@ -148,29 +148,13 @@ a {
 
 
 
-
-.tf__topbar {
+.slider {
     width: 100%;
-    height: 58px;
-    background: var(--colorBlack);
-    position: fixed;
-    top: 0;
-    left: 0;
+    height: 80px;
+    position: fixed !important;
+    top: -7px;
     z-index: 999;
 }
-
-    .tf__topbar .contact {
-        height: 58px;
-    }
-
-    .tf__topbar .gmail_phone {
-        background-color: var(--bs-orange);
-    }
-
-        .tf__topbar .gmail_phone a:hover i, .tf__topbar .gmail_phone a:hover span {
-            color: #000;
-            transition: .6s;
-        }
 
 .icons a {
     width: 2rem;
@@ -283,3 +267,34 @@ nav {
     .nav_items_drop_down li:hover a {
         color: orange;
     }
+
+
+ .container .text h4 {
+    color: var(--colorPrimary);
+    font-family: var(--cursiveFont);
+    font-size: 1.7rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
+}
+
+     .container .text h4::after {
+        position: absolute;
+        content: "";
+        background: url(./images/images/heading_shapes_1.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 65px;
+        height: 23px;
+        top: 3px;
+        right: -80px;
+    }
+
+ .container .text .text_offer h2 {
+    text-transform: capitalize;
+    font-size: 2rem;
+    font-weight: 800;
+}
