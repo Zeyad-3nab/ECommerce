@@ -4,10 +4,10 @@ namespace Ecommerce.Repository.IRepository
 {
     public interface IProduct:IRepository<Product>
     {
-        Product GetProductById(int id);
-        List<Product> GetProductWithBrand();
-        List<Product> GetAllProductsWithBrand(int id);
-        List<Product> Search(string temp);
+        public Product GetProductById(int id);
+        public List<Product> GetProductWithBrand();
+        public List<Product> GetAllProductsWithBrand(int id);
+        public List<Product> Search(string temp);
         //void Create(Product product);
         //void SaveChanges();
     }

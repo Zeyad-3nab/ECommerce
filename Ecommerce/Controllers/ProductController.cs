@@ -54,6 +54,7 @@ namespace Ecommerce.Controllers
                     Price = productVM.Price
                 };
                 product.Add(productt);
+                TempData["CreateProduct"] = "Product created Successfully";
                 return RedirectToAction("Index", "Product");
             }
             else
@@ -69,16 +70,25 @@ namespace Ecommerce.Controllers
         {
             ViewData["Brands"] = brand.GetAll();
             var result = product.GetProductById(id);
-            ProductVM productVM = new ProductVM()
+            if (result != null)
             {
-                Id = result.Id,
-                Name = result.Name,
-                Description = result.Description,
-                Photo = result.Photo,
-                BrandId = result.BrandId,
-                Price = result.Price
-            };
-            return View(productVM);
+                ProductVM productVM = new ProductVM()
+                {
+                    Id = result.Id,
+                    Name = result.Name,
+                    Description = result.Description,
+                    Photo = result.Photo,
+                    BrandId = result.BrandId,
+                    Price = result.Price
+                };
+                return View(productVM);
+            }
+            else 
+            {
+                TempData["NotFound"] = "Not Found";
+
+                return RedirectToAction("index", "Product");
+            }
         }
 
         [HttpPost]
@@ -96,6 +106,7 @@ namespace Ecommerce.Controllers
                     Price = productVM.Price
                 };
                 product.Update(productt);
+                TempData["UpdateProduct"] = "Product updated Successfully";
                 return RedirectToAction("Index", "Product");
             }
             else
@@ -112,14 +123,6 @@ namespace Ecommerce.Controllers
             return View("Index", result);
         }
 
-
-        //[HttpGet]
-        //public IActionResult Delete(int id) 
-        //{
-        //    product.Delete(id);
-        //    return RedirectToAction("Index","Product");
-
-        //}
 
 
     }
