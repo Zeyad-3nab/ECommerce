@@ -13,6 +13,37 @@
 </head>
 <body>
 
+    @section Notification
+    {
+        @if (@TempData["CreateAlert"] != null)
+        {
+            <script>
+
+                toastr.success('@TempData["CreateAlert"]')
+
+            </script>
+
+        }
+        @if (@TempData["UpdateAlert"] != null)
+        {
+            <script>
+
+                toastr.info('@TempData["UpdateAlert"]')
+
+            </script>
+
+        }
+        @if (@TempData["NotFound"] != null)
+        {
+            <script>
+
+                toastr.warning('@TempData["NotFound"]')
+
+            </script>
+
+        }
+    }
+
     <section class=" section_footer position-relative">
         <img class="position-absolute image" src="https://th.bing.com/th/id/OIP.DtamAZGSvUAtmfXJnopPWQHaEK?rs=1&pid=ImgDetMain" alt="">
         <div class="container d-flex justify-content-center flex-wrap align-items-center ">

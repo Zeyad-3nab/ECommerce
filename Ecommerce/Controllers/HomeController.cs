@@ -7,6 +7,7 @@ namespace Ecommerce.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        public static int count = 0;
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -15,6 +16,8 @@ namespace Ecommerce.Controllers
 
         public IActionResult Index()
         {
+            count++;
+            ViewData["Loading"] = count;
             return View();
         }
 
