@@ -3,11 +3,11 @@
     justify-content:center;
     align-items:center;
     background-color: rgba(255, 228, 196, .5);
-    height:100vh;
+    height:81vh;
 }
 .image {
-    width:45%;
-    height:20rem;
+    width:20rem;
+    height:15rem;
 }
     .image img {
         width:100%;
