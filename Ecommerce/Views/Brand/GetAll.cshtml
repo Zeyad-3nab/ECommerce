@@ -1,0 +1,44 @@
+﻿@model IEnumerable<FinalProject.Models.Brand>
+
+@{
+    ViewData["Title"] = "GetAll";
+}
+
+<h1>GetAll</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<a asp-action="Create" class="btn btn-primary"><span>Add New Brand </span></a>
+<br />
+<table class="table" style="background:#ececee;margin-top:15px;">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody >
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a> 
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    <a href="/Product/GetAllProductsWithBrand/@item.Id" class="btn btn-info">All @item.Name LapTops</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

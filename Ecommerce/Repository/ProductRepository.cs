@@ -31,16 +31,22 @@ namespace Ecommerce.Repository
 
         public Product GetProductById(int id)
         {
-           return context.Products.Find(id); 
+            return context.Products.Find(id);
         }
 
         public List<Product> GetAll()
         {
             return context.Products.ToList();
         }
-       public List<Product> GetProductWithBrand()
+        public List<Product> GetAllProductsWithBrand(int id)
         {
-            var result=context.Products.Include(e=>e.Brand).ToList();
+            var result = context.Products.Where(e => e.BrandId == id)
+                .Include(e => e.Brand).ToList();
+            return result;
+        }
+        public List<Product> GetProductWithBrand()
+        {
+            var result = context.Products.Include(e => e.Brand).ToList();
             return result;
         }
 
@@ -48,6 +54,12 @@ namespace Ecommerce.Repository
         {
             context.Products.Update(temp);
             context.SaveChanges();
+        }
+        public List<Product> Search(string temp)
+        {
+            var result = context.Products.Where(e => e.Name.Contains(temp)).Include(e => e.Brand).ToList();
+            return result;
+
         }
     }
 }

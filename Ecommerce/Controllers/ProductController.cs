@@ -10,7 +10,7 @@ namespace Ecommerce.Controllers
         private readonly IProduct product;
         private readonly IBrand brand;
 
-        public ProductController(IProduct product,IBrand brand)
+        public ProductController(IProduct product, IBrand brand)
         {
             this.product = product;
             this.brand = brand;
@@ -27,10 +27,16 @@ namespace Ecommerce.Controllers
             return View(result);
         }
 
+        public IActionResult GetAllProductsWithBrand(int id)
+        {
+            var result = product.GetAllProductsWithBrand(id);
+            return View(result);
+        }
+
         [HttpGet]
         public IActionResult Create()
         {
-            ViewData["Brands"]=brand.GetAll();
+            ViewData["Brands"] = brand.GetAll();
             return View();
         }
 
@@ -48,10 +54,9 @@ namespace Ecommerce.Controllers
                     Price = productVM.Price
                 };
                 product.Add(productt);
-                TempData["CreateAlert"] = "Product Created Successfully";
                 return RedirectToAction("Index", "Product");
             }
-            else 
+            else
             {
                 return View();
             }
@@ -64,25 +69,16 @@ namespace Ecommerce.Controllers
         {
             ViewData["Brands"] = brand.GetAll();
             var result = product.GetProductById(id);
-            if (result != null)
+            ProductVM productVM = new ProductVM()
             {
-                ProductVM productVM = new ProductVM()
-                {
-                    Id = result.Id,
-                    Name = result.Name,
-                    Description = result.Description,
-                    Photo = result.Photo,
-                    BrandId = result.BrandId,
-                    Price = result.Price
-                };
-                return View(productVM);
-            }
-            else 
-            {
-                TempData["NotFound"] = "This Product Not Found";
-                return RedirectToAction("Index", "Product");
-            }
-           
+                Id = result.Id,
+                Name = result.Name,
+                Description = result.Description,
+                Photo = result.Photo,
+                BrandId = result.BrandId,
+                Price = result.Price
+            };
+            return View(productVM);
         }
 
         [HttpPost]
@@ -100,7 +96,6 @@ namespace Ecommerce.Controllers
                     Price = productVM.Price
                 };
                 product.Update(productt);
-                TempData["UpdateAlert"] = "Product Updated Successfully";
                 return RedirectToAction("Index", "Product");
             }
             else
@@ -111,6 +106,11 @@ namespace Ecommerce.Controllers
         }
 
 
+        public IActionResult Search(string temp)
+        {
+            var result = product.Search(temp);
+            return View("Index", result);
+        }
 
 
         //[HttpGet]

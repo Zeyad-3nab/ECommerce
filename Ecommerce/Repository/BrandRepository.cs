@@ -30,6 +30,13 @@ namespace Ecommerce.Repository
             return context.Brands.ToList();
         }
 
+        public Brand GetBrandWithId(int id)
+        {
+            var result = context.Brands.Find(id);
+            return result;
+        }
+
+
         public void Update(Brand temp)
         {
             context.Brands.Update(temp);

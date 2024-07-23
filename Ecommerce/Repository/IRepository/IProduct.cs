@@ -6,6 +6,8 @@ namespace Ecommerce.Repository.IRepository
     {
         Product GetProductById(int id);
         List<Product> GetProductWithBrand();
+        List<Product> GetAllProductsWithBrand(int id);
+        List<Product> Search(string temp);
         //void Create(Product product);
         //void SaveChanges();
     }
