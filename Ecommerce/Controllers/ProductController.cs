@@ -172,6 +172,7 @@ namespace Ecommerce.Controllers
         public IActionResult Delete(int id)
         {
             product.Delete(id);
+            TempData["DeleteProduct"] = "Product Deleted Successfully";
             return RedirectToAction("Index");
         }
 

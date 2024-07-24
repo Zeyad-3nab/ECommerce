@@ -33,6 +33,15 @@
             </script>
 
         }
+        @if (@TempData["DeleteProduct"] != null)
+        {
+            <script>
+
+                toastr.error('@TempData["DeleteProduct"]')
+
+            </script>
+
+        }
         @if (@TempData["NotFound"] != null)
         {
             <script>
