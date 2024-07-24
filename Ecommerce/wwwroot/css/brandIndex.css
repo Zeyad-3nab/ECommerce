@@ -1,0 +1,95 @@
+﻿.contact2 {
+    position: relative;
+    width: 100% !important;
+    height: 40vh;
+    background: rgba(35, 31, 64, 0.5);
+    margin-top: 50px;
+}
+
+    .contact2 .container {
+        width: inherit !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        height: 100%;
+    }
+
+        .contact2 .container img {
+            width: inherit;
+            position: absolute;
+            z-index: -1;
+            height: inherit;
+        }
+
+    .contact2 .text {
+        color: #fff;
+    }
+
+        .contact2 .text h1 {
+            color: #ffffff;
+            text-transform: capitalize;
+            font-weight: 600;
+            margin-bottom: 7px;
+            font-family: 'Barlow', sans-serif;
+        }
+
+        .contact2 .text a {
+            text-transform: capitalize;
+            color: #ffffff;
+            font-size: 16px;
+            position: relative;
+            transition: all linear .3s;
+            -webkit-transition: all linear .3s;
+        }
+
+            .contact2 .text a:hover h4 {
+                color: #ff7c08;
+                transition: .5s;
+            }
+
+            .contact2 .text a:nth-of-type(2) {
+                color: #ff7c08;
+            }
+
+    .contact2 .contact_text {
+        padding-left: 8rem;
+    }
+
+
+.button_create {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #231f40c4;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    min-width: 120px;
+    padding: 0 10px;
+    transition: all 0.5s;
+}
+
+    .button_create span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+
+        .button_create span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+    .button_create:hover span {
+        padding-right: 25px;
+        color: #FFFFFF;
+    }
+
+        .button_create:hover span:after {
+            opacity: 1;
+            right: 0;
+        }

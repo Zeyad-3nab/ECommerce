@@ -15,7 +15,6 @@
   <ItemGroup>
     <None Include="Views\Brand\Create.cshtml" />
     <None Include="Views\Brand\Edit.cshtml" />
-    <None Include="Views\Brand\GetAll.cshtml" />
     <None Include="wwwroot\js\index.js" />
     <None Include="wwwroot\js\site.js" />
     <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />

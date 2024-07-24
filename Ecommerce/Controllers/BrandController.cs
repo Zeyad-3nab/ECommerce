@@ -13,11 +13,16 @@ namespace Ecommerce.Controllers
         {
             this.brand = brand;
         }
-        public IActionResult GetAll()
+
+
+        public IActionResult Index()
         {
             var result = brand.GetAll();
             return View(result);
         }
+
+
+
         public IActionResult Create()
         {
             return View();
@@ -37,6 +42,10 @@ namespace Ecommerce.Controllers
             }
             return View();
         }
+
+
+
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             var result = brand.GetBrandWithId(id);
@@ -59,10 +68,13 @@ namespace Ecommerce.Controllers
             return View();
         }
 
+
+
+
         public IActionResult Delete(int id)
         {
             brand.Delete(id);
-            return RedirectToAction("GetAll");
+            return RedirectToAction("Index");
         }
     }
 }

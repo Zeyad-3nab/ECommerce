@@ -1,0 +1,132 @@
+﻿@* @model IEnumerable<FinalProject.Models.Brand> *@
+
+@* @{
+    ViewData["Title"] = "GetAll";
+}
+
+
+
+<a asp-action="Create" class="btn btn-primary"><span>Add New Brand </span></a>
+<br />
+<table class="table" style="background:#ececee;margin-top:15px;">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody >
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a> 
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    <a href="/Product/GetAllProductsWithBrand/@item.Id" class="btn btn-info">All @item.Name LapTops</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+ *@
+
+
+
+  @model IEnumerable<FinalProject.Models.Brand> 
+
+ @{
+    ViewData["Title"] = "GetAll";
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/styles/all.min.css">
+    <link rel="stylesheet" href="./assets/styles/bootstrap.min.css">
+    <link href="~/css/brandIndex.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="contact2">
+        <div class="container d-flex align-items-center">
+            <img src="~/Images/offer_item_img3.jpg" alt="">
+            <div class="contact_text ">
+                <div class="text">
+                    <h1>Our Brands</h1>
+                    <div class="home d-flex align-items-center gap-2">
+                        <a asp-action="Index" asp-controller="Home" class="d-flex align-items-center gap-1">
+                            <i class="fa-solid fa-house"></i>
+                            <h4 style="color:#ffffff">Home</h4>
+                        </a>
+                        <span>-</span>
+                        <a href="#">
+                            <h4>Brands</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section >
+          <div style="padding-top:1rem; padding-left:6.5%;">
+            <a asp-action="Create" asp-controller="Brand" class="button_create" style="vertical-align:middle "><span>Add Product </span></a>
+          </div>
+        <div class="container d-flex justify-content-center align-items-center">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row">@item.Id</th>
+                            <td>@item.Name</td>
+                            <td>@item.Description</td>
+                            <td>
+                                <a class="btn btn-warning" asp-action="Edit" asp-controller="Brand" asp-route-id="@item.Id">Edit</a>
+                                <a class="btn btn-danger" asp-action="Delete" asp-controller="Brand" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+   
+
+
+
+        @section Scripts {
+            @{
+                await Html.RenderPartialAsync("_ValidationScriptsPartial");
+            }
+        }
+
+</body>
+</html>
