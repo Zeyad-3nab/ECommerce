@@ -9,11 +9,13 @@ namespace Ecommerce.Controllers
     {
         private readonly IProduct product;
         private readonly IBrand brand;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
-        public ProductController(IProduct product, IBrand brand)
+        public ProductController(IProduct product, IBrand brand ,IWebHostEnvironment webHostEnvironment)
         {
             this.product = product;
             this.brand = brand;
+            this.webHostEnvironment = webHostEnvironment;
         }
         public IActionResult Index()
         {
@@ -41,10 +43,35 @@ namespace Ecommerce.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(ProductVM productVM)
+        public async Task<IActionResult> Create(ProductVM productVM,IFormFile? file)
         {
             if (ModelState.IsValid)
             {
+                if (file != null && file.Length > 0)
+                {
+                    string imagesFolderBath = Path.Combine(webHostEnvironment.WebRootPath, "Images");
+                    Directory.CreateDirectory(imagesFolderBath);
+                    if (!string.IsNullOrEmpty(productVM.Photo))
+                    {
+                        string oldImagePath = Path.Combine(webHostEnvironment.WebRootPath, productVM.Photo.TrimStart('/'));
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
+
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    string filePath = Path.Combine(imagesFolderBath, fileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(fileStream);
+                    }
+                    productVM.Photo = fileName;
+                }
+
+
+
+
                 Product productt = new Product()
                 {
                     Name = productVM.Name,
@@ -59,7 +86,7 @@ namespace Ecommerce.Controllers
             }
             else
             {
-                return View();
+                return RedirectToAction("Create", "Product");
             }
 
         }
@@ -92,10 +119,35 @@ namespace Ecommerce.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(ProductVM productVM)
+        public async Task<IActionResult> Edit(ProductVM productVM,IFormFile? file)
         {
             if (ModelState.IsValid)
             {
+                if (file != null && file.Length > 0)
+                {
+                    string imagesFolderBath = Path.Combine(webHostEnvironment.WebRootPath, "Images");
+                    Directory.CreateDirectory(imagesFolderBath);
+                    if (!string.IsNullOrEmpty(productVM.Photo))
+                    {
+                        string oldImagePath = Path.Combine(webHostEnvironment.WebRootPath, productVM.Photo.TrimStart('/'));
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
+
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    string filePath = Path.Combine(imagesFolderBath, fileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(fileStream);
+                    }
+                    productVM.Photo = fileName;
+                }
+
+
+
+
                 Product productt = new Product()
                 {
                     Id = productVM.Id,
@@ -111,11 +163,17 @@ namespace Ecommerce.Controllers
             }
             else
             {
-                return View();
+                return RedirectToAction("Create", "Product");
             }
+
 
         }
 
+        public IActionResult Delete(int id)
+        {
+            product.Delete(id);
+            return RedirectToAction("Index");
+        }
 
         public IActionResult Search(string temp)
         {
