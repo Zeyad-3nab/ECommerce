@@ -89,7 +89,7 @@
             <div class=" d-flex justify-content-center align-items-center gap-5 flex-wrap">
                 @foreach (var item in Model)
                 {
-                    <div class="card" style="width:22rem; min-height:22rem;">
+                    <div class="card" style="width:22rem; min-height:22rem;box-shadow: 0 0 10px rgba(0, 0, 0, .4);">
                         <div class="image">
                             <a href="/Product/Details/@item.Id">
                                 <img class="card-img-top" src="~/images/@item.Photo" alt="Card image cap">
@@ -121,7 +121,7 @@
                 <h2>Delete Confirmation</h2>
                 <span class="close">&times;</span>
             </div>
-            <p>Are you sure you want to delete this doctor?</p>
+            <p>Are you sure you want to delete this Product?</p>
             <hr>
             <div class="d-flex justify-content-center align-items-center gap-5">
                 <button class="cancelDelete" id="cancelDelete">Cancel</button>
@@ -131,7 +131,5 @@
     </div>
     <script src="~/js/ProductIndex.js"></script>
     <script src="./assets/scripts/bootstrap.bundle.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-        <script src="./assets/scripts/menu.js"></script>
 </body>
 </html>

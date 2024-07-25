@@ -5,7 +5,7 @@
 
         public List<T> GetAll();
         public void Update(T temp);
-        public void Delete(int id);
+        public void Delete(T temp);
         public void Add(T temp);
     }
 }

@@ -1,51 +1,44 @@
-﻿@* @model IEnumerable<FinalProject.Models.Brand> *@
-
-@* @{
-    ViewData["Title"] = "GetAll";
-}
-
-
-
-<a asp-action="Create" class="btn btn-primary"><span>Add New Brand </span></a>
-<br />
-<table class="table" style="background:#ececee;margin-top:15px;">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody >
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a> 
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
-                    <a href="/Product/GetAllProductsWithBrand/@item.Id" class="btn btn-info">All @item.Name LapTops</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
- *@
-
-
-
+﻿
   @model IEnumerable<FinalProject.Models.Brand> 
 
- @{
-    ViewData["Title"] = "GetAll";
+@section Notification
+  {
+    @if (@TempData["CreateBrand"] != null)
+    {
+        <script>
+
+            toastr.success('@TempData["CreateBrand"]')
+
+        </script>
+
+    }
+    @if (@TempData["UpdateBrand"] != null)
+    {
+        <script>
+
+            toastr.info('@TempData["UpdateBrand"]')
+
+        </script>
+
+    }
+    @if (@TempData["DeleteBrand"] != null)
+    {
+        <script>
+
+            toastr.error('@TempData["DeleteBrand"]')
+
+        </script>
+
+    }
+    @if (@TempData["NotFound"] != null)
+    {
+        <script>
+
+            toastr.warning('@TempData["NotFound"]')
+
+        </script>
+
+    }
 }
 
 
@@ -56,9 +49,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="~/css/brandIndex.css" rel="stylesheet" />
     <link rel="stylesheet" href="./assets/styles/all.min.css">
     <link rel="stylesheet" href="./assets/styles/bootstrap.min.css">
-    <link href="~/css/brandIndex.css" rel="stylesheet" />
 </head>
 <body>
     <section class="contact2">
@@ -86,7 +79,7 @@
 
     <section >
           <div style="padding-top:1rem; padding-left:6.5%;">
-            <a asp-action="Create" asp-controller="Brand" class="button_create" style="vertical-align:middle "><span>Add Product </span></a>
+            <a asp-action="Create" asp-controller="Brand" class="button_create" style="vertical-align:middle "><span>Add Brand </span></a>
           </div>
         <div class="container d-flex justify-content-center align-items-center">
             <table class="table table-striped">
@@ -107,7 +100,8 @@
                             <td>@item.Description</td>
                             <td>
                                 <a class="btn btn-warning" asp-action="Edit" asp-controller="Brand" asp-route-id="@item.Id">Edit</a>
-                                <a class="btn btn-danger" asp-action="Delete" asp-controller="Brand" asp-route-id="@item.Id">Delete</a>
+                                <a type="button" href="#" class="btn btn-danger m- delete-button" data-brand-id="@item.Id"><i class="fa-regular fa-trash-can"></i>Delete</a>
+
                             </td>
                         </tr>
 
@@ -118,8 +112,24 @@
     </section>
 
 
-   
 
+    @* Modal *@
+
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <div class="confim_top d-flex justify-content-between align-items-center">
+                <h2>Delete Confirmation</h2>
+                <span class="close">&times;</span>
+            </div>
+            <p>Are you sure you want to delete this Brand?</p>
+            <hr>
+            <div class="d-flex justify-content-center align-items-center gap-5">
+                <button class="cancelDelete" id="cancelDelete">Cancel</button>
+                <button class="confirmDelete" id="confirmDelete">Confirm</button>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/ProductIndex.js"></script>
 
 
         @section Scripts {

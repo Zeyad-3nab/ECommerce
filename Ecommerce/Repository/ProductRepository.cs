@@ -21,10 +21,9 @@ namespace Ecommerce.Repository
             context.SaveChanges();
         }
 
-        public void Delete(int id)
+        public void Delete(Product product)
         {
-            var result = context.Products.Find(id);
-            context.Products.Remove(result);
+            context.Products.Remove(product);
             context.SaveChanges();
         }
 
@@ -55,9 +54,11 @@ namespace Ecommerce.Repository
             context.Products.Update(temp);
             context.SaveChanges();
         }
+
         public List<Product> Search(string temp)
         {
-            var result = context.Products.Where(e => e.Name.Contains(temp)).Include(e => e.Brand).ToList();
+                                       //To Join Brand Table    To Search by name of product        or name of brands
+            var result = context.Products.Include(e => e.Brand).Where(e => e.Name.Contains(temp)||e.Brand.Name.Contains(temp)).ToList();
             return result;
 
         }

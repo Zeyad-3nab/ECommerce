@@ -38,7 +38,8 @@ namespace Ecommerce.Controllers
                     Description = brandVM.Description,
                 };
                 brand.Add(Brand);
-                return RedirectToAction("GetAll", "Brand");
+                TempData["CreateBrand"] = "Brand created Successfully";
+                return RedirectToAction("Index", "Brand");
             }
             return View();
         }
@@ -49,7 +50,15 @@ namespace Ecommerce.Controllers
         public IActionResult Edit(int id)
         {
             var result = brand.GetBrandWithId(id);
-            return View(result);
+            if (result != null)
+            {
+                return View(result);
+            }
+            else 
+            {
+                TempData["NotFound"] = "Brand Not Found";
+                return RedirectToAction("Index", "Brand");
+            }
         }
         [HttpPost]
         public IActionResult Edit(BrandVM brandVM)
@@ -63,7 +72,8 @@ namespace Ecommerce.Controllers
                     Description = brandVM.Description,
                 };
                 this.brand.Update(brand);
-                return RedirectToAction("GetAll");
+                TempData["UpdateBrand"] = "Brand Updated Successfully";
+                return RedirectToAction("Index");
             }
             return View();
         }
@@ -73,8 +83,19 @@ namespace Ecommerce.Controllers
 
         public IActionResult Delete(int id)
         {
-            brand.Delete(id);
-            return RedirectToAction("Index");
+            var result = brand.GetBrandWithId(id);
+            if (result != null)
+            {
+                brand.Delete(result);
+                TempData["DeleteBrand"] = "Brand Deleted Successfully";
+                return RedirectToAction("Index");
+            }
+            else 
+            {
+                TempData["NotFound"] = "Brand Not Found";
+                return RedirectToAction("Index", "Brand");
+            }
+           
         }
     }
 }

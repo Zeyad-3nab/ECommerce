@@ -18,10 +18,9 @@ namespace Ecommerce.Repository
             context.SaveChanges();
         }
 
-        public void Delete(int id)
+        public void Delete(Brand brand)
         {
-            var result = context.Brands.Find(id);
-            context.Brands.Remove(result);
+            context.Brands.Remove(brand);
             context.SaveChanges();
         }
 
