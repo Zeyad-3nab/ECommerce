@@ -18,5 +18,8 @@ namespace Ecommerce.Data
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<Ecommerce.ViewModels.ProductVM> ProductVM { get; set; } = default!;
+
+
     }
 }

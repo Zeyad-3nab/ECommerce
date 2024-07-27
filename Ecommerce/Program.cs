@@ -22,7 +22,7 @@ namespace Ecommerce
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(/*Options => Options.SignIn.RequireConfirmedAccount = true*/)
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(Options => Options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI().AddDefaultTokenProviders();
             builder.Services.AddControllersWithViews();
@@ -31,6 +31,7 @@ namespace Ecommerce
 
             builder.Services.AddScoped<IProduct,ProductRepository>();
             builder.Services.AddScoped<IBrand,BrandRepository>();
+            builder.Services.AddScoped<ICart,CartRepository>();
             //builder.Services.AddTransient<IMailer, EmailSender>();
 
 
