@@ -1,0 +1,31 @@
+﻿.form_div {
+    width: 60%;
+    min-height: 500px;
+    background: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 2rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .4);
+    border-radius: .3rem;
+}
+
+section {
+    background: #EEF6EB;
+}
+
+form {
+    width: 60%;
+}
+.form-group {
+margin-bottom:1rem;
+}
+.btn
+{
+    background:green;
+    padding:.5rem 2rem;
+    font-size:15px;
+    font-weight:700
+
+}

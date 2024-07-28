@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\css\AddToCart.css" />
     <_ContentIncludedByDefault Remove="wwwroot\css\productCreate.css" />
     <_ContentIncludedByDefault Remove="wwwroot\css\productIndex.css" />
   </ItemGroup>

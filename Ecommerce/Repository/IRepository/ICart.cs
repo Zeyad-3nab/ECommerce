@@ -8,5 +8,6 @@ namespace Ecommerce.Repository.IRepository
         public void AddCart(Cart cart);
         public void DeleteCart(Cart cart);
         public Cart GetCartById(int id);
+        public void DeleteAll();
     }
 }

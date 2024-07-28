@@ -88,7 +88,7 @@ namespace Ecommerce.Controllers
             {
                 brand.Delete(result);
                 TempData["DeleteBrand"] = "Brand Deleted Successfully";
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Brand");
             }
             else 
             {

@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<FinalProject.Models.Cart>
-
+@* 
 @{
     ViewData["Title"] = "Index";
 }
@@ -45,3 +45,206 @@
 }
     </tbody>
 </table>
+ *@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/styles/bootstrap.min.css">
+    <link href="~/css/cartIndex.css" rel="stylesheet" />
+</head>
+<body>
+<section class="cart_menu py-5" style="min-height:81vh">
+    <div class="container py-5 ">
+        <h4>Cart Menu</h4>
+        <div class="text_btns d-flex justify-content-between align-items-center flex-wrap ">
+            <h2>Foods that u order</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 wow fadeInUp" data-wow-duration="1s">
+                    @if (Model.Count() == 0)
+                    {
+                        <h5 class="text-center">Empty Cart</h5>
+                    }
+                    else
+                    {
+                        <div class="tf__cart_list">
+                            <div class="table-responsive">
+                                <table>
+                                    <thead>
+                                        <tr class="one">
+                                            <th class="tf__pro_img">
+                                                Image
+                                            </th>
+
+                                            <th class="tf__pro_name">
+                                                details
+                                            </th>
+
+                                            <th class="tf__pro_status">
+                                                price
+                                            </th>
+
+                                            <th class="tf__pro_select">
+                                                quantity
+                                            </th>
+
+                                            <th class="tf__pro_tk">
+                                                total
+                                            </th>
+
+                                            <th class="tf__pro_icon">
+                                                <a class="clear_all" asp-action="RemoveAllFromCart" asp-controller="Cart">clear all</a>
+                                            </th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="_tbody">
+                                        <tr>
+                                            @foreach (var item in Model)
+                                            {
+                                            <tr id="${data.productName+data.productQuantity}">
+
+
+                                                <td class="tf__pro_img">
+                                                    <img src="~/Images/@item.Product.Photo" alt="product" class="img-fluid w-100">
+                                                </td>
+
+                                                <td class="tf__pro_name">
+                                                    <a asp-action="Details" asp-controller="Product" asp-route-id="@item.Product.Id">@item.Product.Name</a>
+
+                                                    <p class="d-flex">
+                                                        <span>@item.Product.Description</span>
+                                                    </p>
+                                                </td>
+
+                                                <td class="tf__pro_status">
+                                                    <h6>$ @item.Product.Price</h6>
+                                                </td>
+
+                                                <td class="tf__pro_select">
+                                                    <h6>@item.Quantity</h6>
+                                                </td>
+
+                                                <td class="tf__pro_tk">
+                                                    <h6>@(item.Quantity * item.Product.Price)</h6>
+                                                </td>
+
+                                                <td class="tf__pro_icon">
+                                                    <a asp-action="RemoveFromCart" asp-controller="Cart" asp-route-id="@item.Id"><i class="fa-solid fa-xmark"></i></a>
+                                                </td>
+                                            </tr>
+                                            }
+                                        </tr>
+                                    </tbody>
+
+
+                                </table>
+
+                            </div>
+                        </div>
+                        
+                    }
+
+                   
+                      
+                          @*   @if (Model.Count() == 0)
+                            {
+                                <h5  class="text-center">Empty Cart</h5>
+                            }
+                            else
+                            {
+                        <div class="tf__cart_list">
+                            <div class="table-responsive">
+                                 <table>
+                            <thead>
+                                <tr class="one">
+                                    <th class="tf__pro_img">
+                                        Image
+                                    </th>
+
+                                    <th class="tf__pro_name">
+                                        details
+                                    </th>
+
+                                    <th class="tf__pro_status">
+                                        price
+                                    </th>
+
+                                    <th class="tf__pro_select">
+                                        quantity
+                                    </th>
+
+                                    <th class="tf__pro_tk">
+                                        total
+                                    </th>
+
+                                    <th class="tf__pro_icon">
+                                            <a class="clear_all" asp-action="RemoveAllFromCart" asp-controller="Cart">clear all</a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="_tbody">
+                                <tr>
+                                        @foreach (var item in Model)
+                                        {
+                                          <tr id="${data.productName+data.productQuantity}">
+
+
+                                            <td class="tf__pro_img">
+                                                <img src="~/Images/@item.Product.Photo" alt="product" class="img-fluid w-100">
+                                            </td>
+
+                                            <td class="tf__pro_name">
+                                                <a asp-action="Details" asp-controller="Product" asp-route-id="@item.Product.Id">@item.Product.Name</a>
+
+                                                <p class="d-flex">
+                                                    <span>@item.Product.Description</span>
+                                                </p>
+                                            </td>
+
+                                            <td class="tf__pro_status">
+                                                <h6>$ @item.Product.Price</h6>
+                                            </td>
+
+                                            <td class="tf__pro_select">
+                                                <h6>@item.Quantity</h6>
+                                            </td>
+
+                                            <td class="tf__pro_tk">
+                                                <h6>@(item.Quantity * item.Product.Price)</h6>
+                                            </td>
+
+                                            <td class="tf__pro_icon">
+                                                <a asp-action="RemoveFromCart" asp-controller="Cart" asp-route-id="@item.Id"><i class="fa-solid fa-xmark"></i></a>
+                                            </td>
+                                        </tr>
+
+
+                                        }
+
+
+                                        }
+ *@
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                            
+
+
+                   
+              
+            </div>
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>

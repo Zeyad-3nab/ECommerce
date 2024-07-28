@@ -35,7 +35,7 @@ namespace Ecommerce.Controllers
             else
             {
                 
-            return RedirectToAction("Index" , "Product");
+            return RedirectToAction("Index" , "Product");  //Change to redirect to login page
             }
         }
 
@@ -45,7 +45,8 @@ namespace Ecommerce.Controllers
         public IActionResult AddToCart(int ProductId) 
         {
             var result = product.GetProductById(ProductId);
-            ViewData["product1"] = result;
+            ViewData["product"] = result;
+            ViewData["GoinWithBrand"] = product.GetProductWithBrand();
             ViewData["UserId"] =userManager.GetUserId(User);
             return View();
         }
@@ -55,33 +56,46 @@ namespace Ecommerce.Controllers
         {
             if (ModelState.IsValid)
             {
-                Cart cart = new Cart()
+                if (cartVM.Quantity <= 0 || cartVM.Quantity > 50)
                 {
-                    ProductId = cartVM.ProductId,
-                    Quantity = cartVM.Quantity,
-                    UserId = cartVM.UserId
-                };
-                cartRepository.AddCart(cart);
-                return RedirectToAction("Index");
+                    return RedirectToAction("AddToCart","Cart",cartVM.ProductId);
+                }
+                else 
+                {
+                    Cart cart = new Cart()
+                    {
+                        ProductId = cartVM.ProductId,
+                        Quantity = (int)cartVM.Quantity,
+                        UserId = cartVM.UserId
+                    };
+                    cartRepository.AddCart(cart);
+                    return RedirectToAction("Index");
+                }
+             
             }
             else
             {
-                return View(cartVM);
+                return View(cartVM);  //Change to redirect to login page
             }
         }
 
-        //public IActionResult RemoveFromCart(int id)
-        //{
-        //    var result = cartRepository.GetCartById(id);
-        //    if (result != null)
-        //    {
-        //        cartRepository.DeleteCart(result);
-        //        return RedirectToAction("Index");
-        //    }
-        //    else 
-        //    {
-        //        return RedirectToAction("Index");
-        //    }
-        //}
+        public IActionResult RemoveFromCart(int id)
+        {
+            var result = cartRepository.GetCartById(id);
+            if (result != null)
+            {
+                cartRepository.DeleteCart(result);
+                return RedirectToAction("Index");
+            }
+            else 
+            {
+                return RedirectToAction("Index");
+            }
+        }
+        public IActionResult RemoveAllFromCart() 
+        {
+            cartRepository.DeleteAll();
+            return RedirectToAction("Index");
+        }
     }
 }

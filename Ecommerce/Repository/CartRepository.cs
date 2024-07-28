@@ -36,5 +36,11 @@ namespace Ecommerce.Repository
             return cart;
         }
 
+       
+        public void DeleteAll()
+        {
+            context.Carts.ExecuteDelete();
+            context.SaveChanges();
+        }
     }
 }
