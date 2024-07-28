@@ -65,7 +65,7 @@ namespace Ecommerce.Controllers
                     Cart cart = new Cart()
                     {
                         ProductId = cartVM.ProductId,
-                        Quantity = (int)cartVM.Quantity,
+                        Quantity = cartVM.Quantity,
                         UserId = cartVM.UserId
                     };
                     cartRepository.AddCart(cart);
