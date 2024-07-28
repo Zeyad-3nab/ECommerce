@@ -24,12 +24,16 @@ namespace Ecommerce.Controllers
             this.product = product;
         }
 
+
+
         public IActionResult Index()
         {
             string? userId = userManager.GetUserId(User);
             if (userId != null) 
             {
+
                 var result=cartRepository.GetCarts(userId);
+                TempData["NumberOfCarts"]=result.Count();
                 return View(result);
             }
             else
@@ -56,12 +60,7 @@ namespace Ecommerce.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (cartVM.Quantity <= 0 || cartVM.Quantity > 50)
-                {
-                    return RedirectToAction("AddToCart","Cart",cartVM.ProductId);
-                }
-                else 
-                {
+               
                     Cart cart = new Cart()
                     {
                         ProductId = cartVM.ProductId,
@@ -70,7 +69,6 @@ namespace Ecommerce.Controllers
                     };
                     cartRepository.AddCart(cart);
                     return RedirectToAction("Index");
-                }
              
             }
             else

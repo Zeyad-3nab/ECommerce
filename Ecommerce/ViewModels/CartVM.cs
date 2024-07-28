@@ -9,7 +9,7 @@ namespace Ecommerce.ViewModels
         public string UserId { get; set; } = null!;
         public int ProductId { get; set; }
 
-       
+        [Range(1,50)]
         public int Quantity { get; set; }
     }
 }
