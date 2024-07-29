@@ -61,5 +61,16 @@ namespace Ecommerce.Repository
             return result;
 
         }
+
+        public List<Product> GetAllWithOrderByAsc()
+        {
+            var result = context.Products.OrderBy(e => e.Price).ToList();
+            return result;
+        }
+        public List<Product> GetAllWithOrderByDesc()
+        {
+            var result = context.Products.OrderByDescending(e => e.Price).ToList();
+            return result;
+        }
     }
 }

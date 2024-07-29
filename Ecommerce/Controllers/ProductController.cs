@@ -200,6 +200,17 @@ namespace Ecommerce.Controllers
             var result = product.Search(temp);
             return View("Index", result);
         }
+        public IActionResult OrderByAsc()
+        { 
+            var result = product.GetAllWithOrderByAsc();
+            return View("Index",result);
+        }
+        public IActionResult OrderByDesc()
+        {
+            var result = product.GetAllWithOrderByDesc();
+            return View("Index", result);
+        }
+
 
 
 
