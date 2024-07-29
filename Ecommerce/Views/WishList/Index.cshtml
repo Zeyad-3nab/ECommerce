@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Ecommerce.Models.WishList>
 
-@{
+@* @{
     ViewData["Title"] = "Index";
 }
 
@@ -39,3 +39,63 @@
 }
     </tbody>
 </table>
+ *@
+
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/styles/all.min.css">
+    <link rel="stylesheet" href="./assets/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/wishListIndex.css">
+</head>
+<body>
+    <section class="food_menu py-5">
+        <div class="container py-5 ">
+        <h4>Wish List Menu</h4>
+        <div class="text_btns d-flex justify-content-between align-items-center flex-wrap ">
+            <h2>Popular Laptop that u like</h2>
+            
+        </div>
+        <div class="foods d-flex flex-wrap gap-5 justify-content-center py-5">
+                @if (Model.Count() == 0)
+                {
+                    <h5>Empty</h5>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <div class="food_info">
+                            <div class="image">
+                                <img class="w-100 h-100" src="~/Images/@item.Product.Photo" alt="">
+                            </div>
+                            <a asp-action="Details" asp-controller="Product" asp-route-id="@item.ProductId"><h3>@item.Product.Name</h3></a>
+                            <div class="icons d-flex justify-content-center align-items-center">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star-half-stroke"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </div>
+                            <h4>@item.Product.Price <del>@(item.Product.Price * 1.5)</del></h4>
+                            <div class="add_carts d-flex py-2 justify-content-center align-items-center mx-2">
+                                <div class="cart_icons d-flex gap-3">
+                                    <a asp-action="RemoveFromWishList" asp-controller="WishList" asp-route-id="@item.Id" class="heart active"><i class="fa-regular fa-heart py-2 px-2 "></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                }
+
+            
+        </div>
+    </div>
+    </section>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="./assets/scripts/wishList.js"></script>
+</body>
+</html>

@@ -42,8 +42,8 @@ namespace Ecommerce.Controllers
             string? userId = userManager.GetUserId(User);
             if (userId != null)
             {
-                var result=product.GetProductById(ProductId);
-                if (result != null) 
+                var result = product.GetProductById(ProductId);
+                if (result != null)
                 {
                     WishList wishList = new WishList()
                     {
@@ -53,7 +53,10 @@ namespace Ecommerce.Controllers
                     wishListRepository.AddWishList(wishList);
                     return RedirectToAction("Index");
                 }
-                return RedirectToAction("Index");
+                else
+                {
+                    return RedirectToAction("Index");
+                } 
                
             }
             else
@@ -79,8 +82,18 @@ namespace Ecommerce.Controllers
 
         public IActionResult RemoveAllFromCart()
         {
-            wishListRepository.DeleteAll();
-            return RedirectToAction("Index");
+            string? userId = userManager.GetUserId(User);
+            if (userId != null)
+            {
+                wishListRepository.DeleteAll();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return Redirect("https://localhost:7280/Identity/Account/Login");
+
+            }
+          
         }
     }
 }
