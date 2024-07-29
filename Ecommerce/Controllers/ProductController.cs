@@ -22,6 +22,7 @@ namespace Ecommerce.Controllers
             var result = product.GetAll();
             return View(result);
         }
+
         public IActionResult Details(int id)
         {
             var result = product.GetProductById(id);
@@ -29,11 +30,15 @@ namespace Ecommerce.Controllers
             return View(result);
         }
 
+
+
         public IActionResult GetAllProductsWithBrand(int id)
         {
             var result = product.GetAllProductsWithBrand(id);
             return View(result);
         }
+
+
 
         [HttpGet]
         public IActionResult Create()
@@ -90,6 +95,9 @@ namespace Ecommerce.Controllers
             }
 
         }
+
+
+
 
 
         [HttpGet]

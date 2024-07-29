@@ -32,6 +32,7 @@ namespace Ecommerce
             builder.Services.AddScoped<IProduct,ProductRepository>();
             builder.Services.AddScoped<IBrand,BrandRepository>();
             builder.Services.AddScoped<ICart,CartRepository>();
+            builder.Services.AddScoped<IWishList,WishListRepository>();
             //builder.Services.AddTransient<IMailer, EmailSender>();
 
 

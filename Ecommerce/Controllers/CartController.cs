@@ -38,8 +38,8 @@ namespace Ecommerce.Controllers
             }
             else
             {
+            return Redirect("https://localhost:7280/Identity/Account/Login");  
                 
-            return RedirectToAction("Index" , "Product");  //Change to redirect to login page
             }
         }
 
@@ -49,11 +49,16 @@ namespace Ecommerce.Controllers
         public IActionResult AddToCart(int ProductId) 
         {
             var result = product.GetProductById(ProductId);
-            ViewData["product"] = result;
-            ViewData["GoinWithBrand"] = product.GetProductWithBrand();
-            ViewData["UserId"] =userManager.GetUserId(User);
-            return View();
+            if (result != null) 
+            {
+                ViewData["product"] = result;
+                ViewData["GoinWithBrand"] = product.GetProductWithBrand();
+                ViewData["UserId"] = userManager.GetUserId(User);
+                return View();
+            }
+            return RedirectToAction("Index");
         }
+           
 
         [HttpPost]
         public IActionResult AddToCart(CartVM cartVM)
@@ -73,7 +78,7 @@ namespace Ecommerce.Controllers
             }
             else
             {
-                return View(cartVM);  //Change to redirect to login page
+                return Redirect("https://localhost:7280/Identity/Account/Login");   //Change to redirect to login page
             }
         }
 

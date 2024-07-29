@@ -39,8 +39,7 @@ namespace Ecommerce.Repository
         }
         public List<Product> GetAllProductsWithBrand(int id)
         {
-            var result = context.Products.Where(e => e.BrandId == id)
-                .Include(e => e.Brand).ToList();
+            var result = context.Products.Where(e => e.BrandId == id).Include(e => e.Brand).ToList();
             return result;
         }
         public List<Product> GetProductWithBrand()
