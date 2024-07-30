@@ -1,4 +1,5 @@
-﻿@* @{
+﻿@using Microsoft.AspNetCore.Identity
+@* @{
     ViewData["Title"] = "Home Page";
 }
 
@@ -8,7 +9,12 @@
 </div>
  *@
 
-
+  @inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Register";
+    Layout = "/Views/Shared/_LoginLayout.cshtml";
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,9 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./assets/styles/all.min.css">
-    <link rel="stylesheet" href="./assets/styles/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-    <link href="~/css/productIndex.css" rel="stylesheet" />
+    <link href="~/css/homeIndex.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -33,25 +37,27 @@
             <div class="spinner"></div>
         </div>
     }
-    
-  <section class=" section_footer position-relative">
-        <img class="position-absolute image" src="https://th.bing.com/th/id/OIP.DtamAZGSvUAtmfXJnopPWQHaEK?rs=1&pid=ImgDetMain" alt="">
-        <div class="container d-flex justify-content-center flex-wrap align-items-center ">
-            <div class="footer_text">
-                <h3>Satisfy Your Cravings</h3>
-                <h1>Our Laptop very fast <br> Wonderful</h1>
-                <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum fugit <br>
-                    minimaet debitis ut distinctio optio.
-                </p>
-                
-            </div>
-            <div class="footer_img position-relative">
-                <img src="https://th.bing.com/th/id/OIP.DtamAZGSvUAtmfXJnopPWQHaEK?rs=1&pid=ImgDetMain" alt="">
+
+    <section style="display:flex; justify-content:center ; align-items:center">
+        <div class="header w-100 text-center">
+               @if (!SignInManager.IsSignedIn(User))
+               {
+                   <ul>
+                    <li><a href="https://localhost:7280/Identity/Account/Login">Login</a></li>
+                    <li><a href="https://localhost:7280/Identity/Account/Register">Register</a></li>
+                   </ul>
+                   
+               }
+            <div class="Text">
+                <h2>Animated BackGround</h2>
+                <p>lorem Test safdafdsa dfsgsf sdgdfsg sgsdfg s sfgdf</p>
+                <!-- HTML !-->
+                <a asp-action="Index" asp-controller="Product"><button style="margin-top:3rem;" class="button-92" role="button">Products</button></a>
+
+
             </div>
         </div>
-    </section>
-    <br />
+   </section>
 
     <script src="~/js/index.js"></script>
 </body>
