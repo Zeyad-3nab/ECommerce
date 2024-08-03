@@ -26,7 +26,10 @@
                         <li class="position-relative"> <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                         <li class="position-relative">   <a class="navbar-brand" asp-area="" asp-controller="Product" asp-action="Index">Products</a></li>
                         <li class="position-relative"> <a class="navbar-brand" asp-area="" asp-controller="Brand" asp-action="Index">Brands</a></li>
-                        <li class="position-relative"> <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                        @if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li class="position-relative"> <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="DashBoard">DashBoard</a></li>
+                        }
                     </ul>
                 </div>
                 <div class="nav_icons d-flex">

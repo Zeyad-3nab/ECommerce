@@ -79,7 +79,11 @@
 
     <section >
           <div style="padding-top:1rem; padding-left:6.5%;">
-            <a asp-action="Create" asp-controller="Brand" class="button_create" style="vertical-align:middle "><span>Add Brand </span></a>
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <a asp-action="Create" asp-controller="Brand" class="button_create" style="vertical-align:middle "><span>Add Brand </span></a>
+            }
+        
           </div>
         <div class="container d-flex justify-content-center align-items-center">
             <table class="table table-striped">
@@ -88,7 +92,11 @@
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Description</th>
-                        <th scope="col">Actions</th>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <th scope="col">Actions</th>
+                        }
+                       
                     </tr>
                 </thead>
                 <tbody>
@@ -99,9 +107,13 @@
                             <td>@item.Name</td>
                             <td>@item.Description</td>
                             <td>
-                                <a class="btn btn-warning" asp-action="Edit" asp-controller="Brand" asp-route-id="@item.Id">Edit</a>
-                                <a type="button" href="#" class="btn btn-danger m- delete-button" data-brand-id="@item.Id"><i class="fa-regular fa-trash-can"></i>Delete</a>
+                                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                {
+                                    <a class="btn btn-warning" asp-action="Edit" asp-controller="Brand" asp-route-id="@item.Id">Edit</a>
+                                    <a type="button" href="#" class="btn btn-danger m- delete-button" data-brand-id="@item.Id"><i class="fa-regular fa-trash-can"></i>Delete</a>
 
+                                }
+                             
                             </td>
                         </tr>
 

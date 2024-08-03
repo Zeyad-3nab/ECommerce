@@ -21,7 +21,7 @@ namespace Ecommerce.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult DashBoard()
         {
             return View();
         }

@@ -1,10 +1,12 @@
 ﻿using Ecommerce.Repository.IRepository;
 using Ecommerce.ViewModels;
 using FinalProject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.Controllers
 {
+   
     public class BrandController : Controller
     {
         private readonly IBrand brand;
@@ -22,7 +24,7 @@ namespace Ecommerce.Controllers
         }
 
 
-
+        
         public IActionResult Create()
         {
             return View();
@@ -45,7 +47,7 @@ namespace Ecommerce.Controllers
         }
 
 
-
+      
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -80,7 +82,7 @@ namespace Ecommerce.Controllers
 
 
 
-
+       
         public IActionResult Delete(int id)
         {
             var result = brand.GetBrandWithId(id);
