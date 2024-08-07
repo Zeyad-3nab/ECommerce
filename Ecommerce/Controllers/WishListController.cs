@@ -32,6 +32,7 @@ namespace Ecommerce.Controllers
             }
             else
             {
+                TempData["Login"] = "Please Login";
                 return Redirect("https://localhost:7280/Identity/Account/Login");
 
             }
@@ -51,16 +52,19 @@ namespace Ecommerce.Controllers
                         UserId = userId
                     };
                     wishListRepository.AddWishList(wishList);
+                    TempData["AddToWishList"] = "Added Successfully";
                     return RedirectToAction("Index");
                 }
                 else
                 {
+                    TempData["NotFound"] = "Product Not Found";
                     return RedirectToAction("Index");
                 } 
                
             }
             else
             {
+                TempData["Login"] = "Please Login";
                 return Redirect("https://localhost:7280/Identity/Account/Login");
             }
         }
@@ -71,10 +75,12 @@ namespace Ecommerce.Controllers
             if (result != null)
             {
                 wishListRepository.DeleteWishList(result);
+                TempData["RemoveFromWishList"] = "Product Removed Successfully";
                 return RedirectToAction("Index");
             }
             else
             {
+                TempData["NotFound"] = "Brand Not Found";
                 return RedirectToAction("Index");
             }
         }
@@ -86,10 +92,12 @@ namespace Ecommerce.Controllers
             if (userId != null)
             {
                 wishListRepository.DeleteAll();
+                TempData["RemoveAllFromWishList"] = "Cart Deleted Successfully";
                 return RedirectToAction("Index");
             }
             else
             {
+                TempData["Login"] = "Please Login";
                 return Redirect("https://localhost:7280/Identity/Account/Login");
 
             }

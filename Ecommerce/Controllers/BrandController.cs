@@ -77,6 +77,7 @@ namespace Ecommerce.Controllers
                 TempData["UpdateBrand"] = "Brand Updated Successfully";
                 return RedirectToAction("Index");
             }
+            TempData["NotFound"] = "Brand Not Found";
             return View();
         }
 

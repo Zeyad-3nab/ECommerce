@@ -56,6 +56,22 @@
 @model LoginModel
 
 
+
+
+
+@*    @section Notification
+    {
+        @if (@TempData["Login"] != null)
+        {
+            <script>
+
+            toastr.success('@TempData["Login"]')
+
+            </script>
+
+        }
+    } *@
+
 @{
     ViewData["Title"] = "Register";
     Layout = "/Views/Shared/_LoginLayout.cshtml";

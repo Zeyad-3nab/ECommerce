@@ -153,10 +153,10 @@ body {
     cursor: pointer;
     padding: .1em .3em;
 }
-
-/*@keyframes animate {
+/*
+@keyframes animate {
     0% {
-        background-position:0 50%;
+        background-position:0 50%;  
     }
     50% {
         background-position: 100% 50%;

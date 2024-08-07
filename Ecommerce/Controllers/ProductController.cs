@@ -26,8 +26,17 @@ namespace Ecommerce.Controllers
         public IActionResult Details(int id)
         {
             var result = product.GetProductById(id);
-            ViewData["GoinWithBrand"] = product.GetProductWithBrand();
-            return View(result);
+            if (result != null)
+            {
+                ViewData["GoinWithBrand"] = product.GetProductWithBrand();
+                return View(result);
+            }
+            else 
+            {
+                TempData["NotFound"] = "Brand Not Found";
+                return RedirectToAction("Index");
+            }
+           
         }
 
 
@@ -35,7 +44,14 @@ namespace Ecommerce.Controllers
         public IActionResult GetAllProductsWithBrand(int id)
         {
             var result = product.GetAllProductsWithBrand(id);
-            return View(result);
+            if (result != null)
+            {
+                return View(result);
+            }
+            else 
+            {
+                return RedirectToAction("Index");
+            }
         }
 
 
@@ -121,10 +137,10 @@ namespace Ecommerce.Controllers
             else 
             {
                 TempData["NotFound"] = "Not Found";
-
                 return RedirectToAction("index", "Product");
             }
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Edit(ProductVM productVM,IFormFile? file)
@@ -177,6 +193,8 @@ namespace Ecommerce.Controllers
 
         }
 
+
+
         public IActionResult Delete(int id)
         {
             var result=product.GetProductById(id);
@@ -198,7 +216,15 @@ namespace Ecommerce.Controllers
         {
 
             var result = product.Search(temp);
-            return View("Index", result);
+            if (result != null)
+            {
+                return View("Index", result);
+            }
+            else 
+            {
+                TempData["NotFound"] = "Not Found";
+                return RedirectToAction("Index");
+            }
         }
         public IActionResult OrderByAsc()
         { 

@@ -19,7 +19,9 @@ namespace Ecommerce.Data
         public DbSet<Cart> Carts { get; set; }
         public DbSet<WishList> wishLists { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<Payment> payments { get; set; }
         public DbSet<Ecommerce.ViewModels.ProductVM> ProductVM { get; set; } = default!;
+        public DbSet<Ecommerce.ViewModels.PaymentVM> PaymentVM { get; set; } = default!;
 
 
     }

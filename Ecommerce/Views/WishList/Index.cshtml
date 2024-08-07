@@ -41,6 +41,52 @@
 </table>
  *@
 
+
+
+
+
+
+@section Notification
+ {
+    @if (@TempData["AddToWishList"] != null)
+    {
+        <script>
+
+            toastr.success('@TempData["AddToWishList"]')
+
+        </script>
+
+    }
+    @if (@TempData["RemoveFromWishList"] != null)
+    {
+        <script>
+
+            toastr.warning('@TempData["RemoveFromWishList"]')
+
+        </script>
+
+    }
+    @if (@TempData["NotFound"] != null)
+    {
+        <script>
+
+            toastr.warning('@TempData["NotFound"]')
+
+        </script>
+
+    }
+    @if (@TempData["RemoveAllFromWishList"] != null)
+    {
+        <script>
+
+            toastr.success('@TempData["RemoveAllFromWishList"]')
+
+        </script>
+
+    }
+}
+
+
             <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -47,6 +47,58 @@
 </table>
  *@
 
+
+@section Notification
+{
+    @if (@TempData["Payment"] != null)
+    {
+        <script>
+
+            toastr.success('@TempData["Payment"]')
+
+        </script>
+
+    }
+    @if (@TempData["AddToCart"] != null)
+    {
+        <script>
+
+            toastr.success('@TempData["AddToCart"]')
+
+        </script>
+
+    }
+    @if (@TempData["RemoveFromCart"] != null)
+    {
+        <script>
+
+            toastr.warning('@TempData["RemoveFromCart"]')
+
+        </script>
+
+    }
+    @if (@TempData["NotFound"] != null)
+    {
+        <script>
+
+            toastr.warning('@TempData["NotFound"]')
+
+        </script>
+
+    }
+    @if (@TempData["RemoveAllFromCart"] != null)
+    {
+        <script>
+
+            toastr.success('@TempData["RemoveAllFromCart"]')
+
+        </script>
+
+    }
+}
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -139,6 +191,69 @@
                                                 </td>
                                             </tr>
                                             }
+
+
+
+
+                                    <thead>
+                                        <tr class="one">
+                                            <th class="tf__pro_img">
+                                             ---
+                                            </th>
+
+                                            <th class="tf__pro_name">
+                                               TOTAL
+                                            </th>
+
+                                            <th class="tf__pro_status">
+                                                @ViewBag.TotalOfPrice
+                                            </th>
+
+                                            <th class="tf__pro_select">
+                                               ----
+                                            </th>
+
+                                            <th class="tf__pro_tk">
+                                               @ViewBag.Total
+                                            </th>
+
+                                            <th class="tf__pro_icon">
+                                                <a class="clear_all" asp-route-Total="@ViewBag.Total" asp-action="Create" asp-controller="Payment">Payment</a>
+                                            </th>
+                                        </tr>
+                                    </thead>
+
+
+                                   @*      <tr >
+
+
+                                            <td class="tf__pro_img">
+                                                <h3>---</h3>
+                                            </td>
+
+                                            <td class="tf__pro_name">
+                                                <h3>---</h3>
+                                            </td>
+
+                                            <td class="tf__pro_status">
+                                                <h6>@ViewBag.TotalOfPrice</h6>
+                                            </td>
+
+                                            <td class="tf__pro_select">
+                                                <h3>---</h3>
+                                            </td>
+
+                                            <td class="tf__pro_tk">
+                                                <h6>@ViewBag.Total</h6>
+                                            </td>
+
+                                            <td class="tf__pro_icon">
+                                                <a class="clear_all" asp-route-Total="@ViewBag.Total" asp-action="Create" asp-controller="Payment">Payment</a>
+
+                                            </td>
+                                        </tr> *@
+
+
                                         </tr>
                                     </tbody>
 

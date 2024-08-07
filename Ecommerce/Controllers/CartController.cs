@@ -25,15 +25,22 @@ namespace Ecommerce.Controllers
         }
 
 
-
+       
         public IActionResult Index()
         {
             string? userId = userManager.GetUserId(User);
             if (userId != null) 
             {
-
+                double TotalOfPrice=0;
+                double Total=0;
                 var result=cartRepository.GetCarts(userId);
+
+                Total = result.Sum(e => e.Quantity * e.Product.Price);
+                TotalOfPrice = result.Sum(e => e.Product.Price);
+
                 TempData["NumberOfCarts"]=result.Count();
+                ViewData["Total"] = Total;
+                ViewData["TotalOfPrice"] = TotalOfPrice;
                 return View(result);
             }
             else
@@ -56,6 +63,7 @@ namespace Ecommerce.Controllers
                 ViewData["UserId"] = userManager.GetUserId(User);
                 return View();
             }
+            TempData["NotFound"] = "Not Found";
             return RedirectToAction("Index");
         }
            
@@ -73,11 +81,13 @@ namespace Ecommerce.Controllers
                         UserId = cartVM.UserId
                     };
                     cartRepository.AddCart(cart);
-                    return RedirectToAction("Index");
+                TempData["AddToCart"] = "Added Successfully";
+                return RedirectToAction("Index");
              
             }
             else
             {
+                TempData["Login"] = "Please Login";
                 return Redirect("https://localhost:7280/Identity/Account/Login");   //Change to redirect to login page
             }
         }
@@ -88,16 +98,19 @@ namespace Ecommerce.Controllers
             if (result != null)
             {
                 cartRepository.DeleteCart(result);
+                TempData["RemoveFromCart"] = "Product Removed Successfully";
                 return RedirectToAction("Index");
             }
             else 
             {
+                   TempData["NotFound"] = "Product Not Found";
                 return RedirectToAction("Index");
             }
         }
         public IActionResult RemoveAllFromCart() 
         {
             cartRepository.DeleteAll();
+            TempData["RemoveAllFromCart"] = "Cart Deleted Successfully";
             return RedirectToAction("Index");
         }
     }
