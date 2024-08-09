@@ -17,7 +17,7 @@ namespace Ecommerce.Controllers
             this.userManager = userManager;
             this.paymentRepository = paymentRepository;
         }
-        //Tes
+        //Test
 
 
         [HttpGet]
