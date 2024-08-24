@@ -17,22 +17,30 @@ namespace Ecommerce.Controllers
             this.brand = brand;
             this.webHostEnvironment = webHostEnvironment;
         }
+
+        //All Product
         public IActionResult Index()
         {
             var result = product.GetAll();
             return View(result);
         }
 
+
+        //One Product
         public IActionResult Details(int id)
         {
             var result = product.GetProductById(id);
             if (result != null)
             {
+
+                //Send Brand With it
                 ViewData["GoinWithBrand"] = product.GetProductWithBrand();
                 return View(result);
             }
             else 
             {
+
+                //If it is not found
                 TempData["NotFound"] = "Brand Not Found";
                 return RedirectToAction("Index");
             }

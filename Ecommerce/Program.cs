@@ -2,11 +2,9 @@ using Ecommerce.Data;
 using Ecommerce.Models;
 using Ecommerce.Repository;
 using Ecommerce.Repository.IRepository;
-using Ecommerce.Services;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
-using UserIdentity.Services;
+using Stripe;
 
 namespace Ecommerce
 {
@@ -27,20 +25,19 @@ namespace Ecommerce
                 .AddDefaultUI().AddDefaultTokenProviders();
             builder.Services.AddControllersWithViews();
 
+            // Configure Stripe settings
+            builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
+            StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
 
 
+            // Configure Models services
             builder.Services.AddScoped<IProduct,ProductRepository>();
             builder.Services.AddScoped<IBrand,BrandRepository>();
             builder.Services.AddScoped<ICart,CartRepository>();
             builder.Services.AddScoped<IWishList,WishListRepository>();
             builder.Services.AddScoped<IPayment,PaymentRepository>();
-            //builder.Services.AddTransient<IMailer, EmailSender>();
 
-
-            // forgetPassword
-            //        builder.Services.AddTransient<IMailer, MailKitMailer>(provider =>
-            //new MailKitMailer("smtp.gmail.com", 587, "ahmed metwally", "AhmedMetwally@#12"));
-
+            
 
 
             var app = builder.Build();

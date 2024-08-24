@@ -71,10 +71,9 @@ body {
 
 .header {
     z-index: 1;
-    background-image: url("https://e0.pxfuel.com/wallpapers/53/610/desktop-wallpaper-blue-two-color-background.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 100%;
+    /*background-image: url("https://e0.pxfuel.com/wallpapers/53/610/desktop-wallpaper-blue-two-color-background.jpg");*/
+    background-image: url('/Images/BackGround2.jpg');
+    background-size:cover;
     height: 100vh;
 }
     .header ul {

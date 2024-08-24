@@ -11,8 +11,9 @@ namespace Ecommerce.Models
         public string Photo { get; set; } = null!;
         //public int CategoryId { get; set; }
         //public Categoty Category { get; set; }
-        public List<Cart> Carts { get; set; }
         public int BrandId { get; set; }
         public Brand Brand { get; set; }
+        public List<Cart> Carts { get; set; }   
+      
     }
 }

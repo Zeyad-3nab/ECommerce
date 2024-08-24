@@ -110,6 +110,7 @@
                                 @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                                 {
                                     <a class="btn btn-warning" asp-action="Edit" asp-controller="Brand" asp-route-id="@item.Id">Edit</a>
+                                    <a class="btn btn-warning" asp-action="GetAllProductsWithBrand" asp-controller="Product" asp-route-id="@item.Id">All Laptops</a>
                                     <a type="button" href="#" class="btn btn-danger m- delete-button" data-brand-id="@item.Id"><i class="fa-regular fa-trash-can"></i>Delete</a>
 
                                 }

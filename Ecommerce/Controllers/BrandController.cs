@@ -17,6 +17,8 @@ namespace Ecommerce.Controllers
         }
 
 
+
+        //Get All Brand
         public IActionResult Index()
         {
             var result = brand.GetAll();
@@ -62,6 +64,10 @@ namespace Ecommerce.Controllers
                 return RedirectToAction("Index", "Brand");
             }
         }
+
+
+
+
         [HttpPost]
         public IActionResult Edit(BrandVM brandVM)
         {

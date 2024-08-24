@@ -33,7 +33,7 @@ namespace Ecommerce.Controllers
             else
             {
                 TempData["Login"] = "Please Login";
-                return Redirect("https://localhost:7280/Identity/Account/Login");
+                return RedirectToPage("/Account/Register", new { area = "Identity" });
 
             }
         }
@@ -65,7 +65,7 @@ namespace Ecommerce.Controllers
             else
             {
                 TempData["Login"] = "Please Login";
-                return Redirect("https://localhost:7280/Identity/Account/Login");
+                return RedirectToPage("/Account/Register", new { area = "Identity" });
             }
         }
 
@@ -98,7 +98,7 @@ namespace Ecommerce.Controllers
             else
             {
                 TempData["Login"] = "Please Login";
-                return Redirect("https://localhost:7280/Identity/Account/Login");
+                return RedirectToPage("/Account/Register", new { area = "Identity" });
 
             }
           
